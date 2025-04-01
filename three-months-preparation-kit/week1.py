@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
 # New learnings
 """
-Use dict.keys(list):
+Use dict.fromkeys(list):
     when we need to remove the duplicates but keep the order
 Use set(list):
     When we need to remove the duplicates but no need to keep the order
