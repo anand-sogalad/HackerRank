@@ -49,6 +49,62 @@ def breaking_records(scores: list):
     return top_score_count, low_score_count
 
 
+def camel_case(string: str):
+    action, _type, text = string.split(";")
+
+    if action.lower() == "s":
+        if _type.lower() == "v":
+            print(
+                "".join([f" {s.lower()}" if s.isupper() else s.lower() for s in text])
+            )
+        elif _type.lower() == "m":
+            text = text[:-2]
+            print(
+                "".join([f" {s.lower()}" if s.isupper() else s.lower() for s in text])
+            )
+        else:
+            print(
+                "".join(
+                    [f" {s.lower()}" if s.isupper() else s.lower() for s in text]
+                ).strip()
+            )
+    else:
+        text = text.split()
+        if _type.lower() == "v":
+            print(text[0].lower() + "".join([s.capitalize() for s in text[1:]]))
+        elif _type.lower() == "m":
+            print(text[0].lower() + "".join([s.capitalize() for s in text[1:]]) + "()")
+        else:
+            print("".join([s.capitalize() for s in text]))
+
+
+def sparse_array(string_list: list, query_list: list):
+    return [
+        sum(i)
+        for i in [
+            [query_word.count(string) for string in string_list]
+            for query_word in query_list
+        ]
+    ]
+
+
+def divisible_sum_pairs(int_list: list, k: int):
+    print(
+        len(
+            [
+                (i, j)
+                for idx, i in enumerate(int_list)
+                for j in int_list[idx + 1 :]
+                if (i + j) % k == 0
+            ]
+        )
+    )
+
+
+def find_median(arr):
+    return sorted(arr)[len(arr) // 2]
+
+
 def main():
     # plus_minus
     plus_minus([-4, 3, -9, 0, 4, 1])
@@ -60,6 +116,26 @@ def main():
         [3, 4, 21, 36, 10, 28, 35, 5, 24, 42],
     ]:
         print(breaking_records(i))
+    camel_case("S;V;pictureFrame")
+    sparse_array(
+        [
+            "abcde",
+            "sdaklfj",
+            "asdjf",
+            "na",
+            "basdn",
+            "sdaklfj",
+            "asdjf",
+            "na",
+            "asdjf",
+            "na",
+            "basdn",
+            "sdaklfj",
+            "asdjf",
+        ],
+        ["abcde", "sdaklfj", "asdjf", "na", "basdn"],
+    )
+    divisible_sum_pairs([1, 3, 2, 6, 1, 2], 3)
 
 
 if __name__ == "__main__":
