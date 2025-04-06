@@ -19,6 +19,10 @@ def grade_roundup(grades):
     return rounded_grades
 
 
+def flipping_bits(n):
+    return n ^ 0xFFFFFFFF
+
+
 def main():
     arr = [1, 2, 3, 4, 3, 2, 1]
     result = lonely_int(arr)
@@ -27,6 +31,10 @@ def main():
     grades = [84, 29, 57]
     result = grade_roundup(grades)
     print(f"Rounded grades: {result}")
+
+    number = 1
+    result = flipping_bits(number)
+    print(f"Result after flipping: {result}")
 
 
 if __name__ == "__main__":
